@@ -34,23 +34,29 @@ I use Dynamic Programming with two variables:
 
 Then I slide the window forward for the next house.
 
+Reason why DP works best here is because this problem has:
+a) Optimal Substructure
+The solution to the problem depends on solutions to smaller subproblems.
+Max money at house i = depends on max money at house i-1 and i-2
+b) Overlapping Subproblems
+Without DP, we'd recalculate the same houses multiple times. For example, finding the best solution for house 5 requires knowing the best for house 3 and 4, and finding the best for house 4 also needs house 3 - that's overlap!
 ## How it works
 
 **Input:** `[2, 7, 9, 3, 1]`
 ```
 Step 1 - House 0 ($2):
   maxCurrent = max(0, 0 + 2) = 2
-  Decision: Rob ✓
+  Decision: Rob 
   State: maxTwoBack=0, maxOneBack=2
 
 Step 2 - House 1 ($7):
   maxCurrent = max(2, 0 + 7) = 7
-  Decision: Rob ✓
+  Decision: Rob 
   State: maxTwoBack=2, maxOneBack=7
 
 Step 3 - House 2 ($9):
   maxCurrent = max(7, 2 + 9) = 11
-  Decision: Rob ✓ (houses 0 and 2)
+  Decision: Rob  (houses 0 and 2)
   State: maxTwoBack=7, maxOneBack=11
 
 Step 4 - House 3 ($3):
@@ -60,11 +66,24 @@ Step 4 - House 3 ($3):
 
 Step 5 - House 4 ($1):
   maxCurrent = max(11, 11 + 1) = 12
-  Decision: Rob ✓ (houses 0, 2, and 4)
+  Decision: Rob  (houses 0, 2, and 4)
   State: maxTwoBack=11, maxOneBack=12
 
 
 **Result:** $12 (robbed houses 0, 2, and 4)
+
+ Time and Space Complexity
+Time Complexity: O(n)
+
+We make a single pass through the array
+Each iteration does constant-time operations (comparison, assignment)
+No nested loops
+Where n = number of houses
+
+Space Complexity: O(1)
+
+Only using 3 variables (maxTwoBack, maxOneBack, maxCurrent)
+Space doesn't grow with input size
 
 
 
