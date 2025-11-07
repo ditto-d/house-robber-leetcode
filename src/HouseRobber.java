@@ -28,4 +28,18 @@
         // after processing all houses, maxOneBack contains the answer
         return maxOneBack;
     }
+    
+
+ public static void main(String[] args) {
+     HouseRobber solution = new HouseRobber();
+
+     System.out.println("=== House Robber Tests ===\n");
+
+
+     int[] test1 = {2, 7, 9, 3, 1};
+     System.out.println("Test 1: [2, 7, 9, 3, 1]");
+     System.out.println("Output: " + solution.rob(test1));
+     System.out.println("Expected: 12\n");
+
+ }
 }
